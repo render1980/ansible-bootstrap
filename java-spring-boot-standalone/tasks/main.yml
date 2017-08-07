@@ -1,0 +1,46 @@
+- name: Check if exists or create {{ app_path }}/bin dir for service jars
+  file:
+    path: "{{ app_path }}/bin"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+    recurse: yes
+
+- name: Check if exists or create {{ app_path }}/bin dir for service jars
+  file:
+    path: "{{ app_path }}/conf"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+    recurse: yes
+
+- name: Synchronize {{ jar_name }} -> remote host:{{ app_path }}/bin
+  synchronize:
+    src: "{{ cur_dir }}/build/libs/{{ jar_name }}"
+    dest: "{{ app_bin_path }}"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+
+- name: Synchronize env config -> remote host:{{ app_path }}/conf
+  synchronize:
+    src: "{{ cur_dir }}/src/main/resources/application-{{ profile }}.yml"
+    dest: "{{ app_conf_path }}/{{ conf_name }}"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+
+- name: Create init.d script
+  copy:
+    src: "{{ cur_dir }}/ansible/conf/{{ init_script_name }}"
+    dest: "/etc/init.d/{{ init_script_name }}"
+  ignore_errors: yes
+
+- name: Chmod -> 755 for init.d script
+  file:
+    path: "/etc/init.d/{{ init_script_name }}"
+    state: file
+    mode: 0755
+  ignore_errors: yes
+
+- name: "reload /etc/init.d/{{ init_script_name }}"
+  command: "nohup /etc/init.d/{{ init_script_name }} reload"
+  ignore_errors: yes

@@ -1,0 +1,30 @@
+- name: Check if dir /usr/java exists or create
+  become: yes
+  file:
+    path: /usr/java
+    state: directory
+    mode: 0753
+
+- name: Check java exists
+  become: yes
+  stat:
+    path: /usr/java/latest
+  register: java_folder
+
+- name: Download Hotspot jre1.8 (https://java.com/en/download/linux_manual.jsp)
+  become: yes
+  get_url:
+    url: http://javadl.oracle.com/webapps/download/AutoDL?BundleId=225344_090f390dda5b47b9b721c7dfaa008135
+    dest: /tmp/jdk1.8.rpm
+    mode: 0755
+  when: not java_folder.stat.exists | bool
+
+- name: Rpm install
+  become: yes
+  shell: rpm --force -Uvh /tmp/jdk1.8.rpm
+  when: not java_folder.stat.exists | bool
+
+- name: Export JAVA_HOME
+  become: yes
+  shell: export JAVA_HOME=/usr/java/latest
+  when: not java_folder.stat.exists | bool

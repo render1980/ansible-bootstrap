@@ -1,0 +1,8 @@
+[pay]
+host1
+
+[all:vars]
+ansible_ssh_user=user
+ansible_ssh_private_key_file=~/.ssh/id_rsa_user
+ansible_profile=dev
+ansible_ssh_port=22

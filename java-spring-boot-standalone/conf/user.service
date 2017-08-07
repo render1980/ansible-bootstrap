@@ -1,0 +1,98 @@
+#! /bin/sh
+
+PAY_HOME=/opt/user/service
+JAR_NAME=service.jar
+JAR_PATH=$PAY_HOME/bin/$JAR_NAME
+CONF_PATH=$PAY_HOME/conf/application.yml
+SERVICE_NAME=user.service
+JAVA_PATH=/usr/bin/java
+
+
+check_status() {
+
+  local status=`ps -C "java -jar $JAR_PATH" -o pid h`
+
+  if [ $status ] ; then
+    echo $status
+    return 0
+  fi
+
+  echo 0
+}
+
+start() {
+
+ local pid=$(check_status)
+
+  if [ $pid -ne 0 ] ; then
+    echo "$SERVICE_NAME is already started"
+    exit 0
+  fi
+
+  echo -n "Starting $SERVICE_NAME: $JAVA_PATH -Dspring.config.location=$CONF_PATH -jar $JAR_PATH"
+  $JAVA_PATH -Dspring.config.location=$CONF_PATH -jar $JAR_PATH &
+  echo " $SERVICE_NAME is started"
+}
+
+stop() {
+
+  local pid=$(check_status)
+
+  if [ $pid -eq 0 ] ; then
+    echo "$SERVICE_NAME is already stopped"
+    exit 0
+  fi
+
+  echo -n "Stopping $SERVICE_NAME: "
+  kill $pid
+  echo "$SERVICE_NAME is stopped"
+}
+
+reload() {
+
+  local pid=$(check_status)
+
+  if [ $pid -ne 0 ] ; then
+    echo "$SERVICE_NAME is started, try to restart"
+    echo -n "Stopping $SERVICE_NAME: "
+    kill $pid
+    echo "$SERVICE_NAME is stopped"
+  fi
+
+    echo "$SERVICE_NAME is stopped, try to start"
+    echo -n "Starting $SERVICE_NAME: $JAVA_PATH -Dspring.config.location=$CONF_PATH -jar $JAR_PATH &"
+    $JAVA_PATH -Dspring.config.location=$CONF_PATH -jar $JAR_PATH &
+    echo " $SERVICE_NAME is started"
+    exit 0
+}
+
+status() {
+
+  local status=$(check_status)
+
+  if [ $status -ne 0 ] ; then
+    echo "$SERVICE_NAME is started"
+  else
+    echo "$SERVICE_NAME is stopped"
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  restart|reload)
+    reload
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|reload|status}"
+    exit 1
+esac
+
+exit 0
