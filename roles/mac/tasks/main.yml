@@ -1,0 +1,63 @@
+---
+- name: "Sync {{ install_xcode_script }}"
+  synchronize:
+    src: "{{ cur_dir }}/roles/{{ role }}/scripts/{{ install_xcode_script }}"
+    dest: "/Users/{{ user }}/{{ install_xcode_script }}"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+
+- name: "Install Xcode"
+  shell: sh /Users/{{ user }}/{{ install_xcode_script }}
+
+# - name: "Update Command Line Tools for Xcode"
+#   become: yes
+#   shell: softwareupdate -i $(softwareupdate -l | grep '\*.*Command Line Tools (macOS High Sierra' | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
+
+- name: "Install homebrew"
+  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  ignore_errors: yes
+
+- name: "Is configured taps are tapped?"
+  homebrew_tap: "tap={{ item }} state=present"
+  with_items: "{{ homebrew_taps }}"
+  tags:
+    - apps
+    - cask
+
+- name: "Install configured cask applications."
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    install_options: "appdir={{ homebrew_cask_appdir }}"
+  with_items: "{{ homebrew_cask_apps }}"
+  tags:
+    - apps
+    - cask
+
+- name: "Ensure configured homebrew packages are installed."
+  homebrew:
+    name: "{{ item.name | default(item) }}"
+    install_options: "{{ item.install_options | default(omit) }}"
+    state: present
+  with_items: "{{ homebrew_packages }}"
+  tags:
+    - apps
+    - brew
+
+- name: "Ranger configs"
+  shell: ranger --copy-config=all
+
+- name: "Sync ranger rc.conf"
+  synchronize:
+    src: "{{ cur_dir }}/roles/{{ role }}/config/ranger/rc.conf"
+    dest: "/Users/{{ user }}/.config/ranger/"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+
+- name: "Sync .emacs"
+  synchronize:
+    src: "{{ cur_dir }}/roles/{{ role }}/config/.emacs"
+    dest: "/Users/{{ user }}/"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+

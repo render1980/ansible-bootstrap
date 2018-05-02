@@ -1,9 +1,0 @@
----
-- hosts: pay
-  become: yes
-  remote_user: "{{ hostvars[groups['pay'][0]]['ansible_ssh_user'] }}"
-  vars_files:
-    - vars/main.yml
-  tasks:
-    - include: tasks/jvm-setup.yml
-    - include: tasks/main.yml

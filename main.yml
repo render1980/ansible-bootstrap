@@ -1,0 +1,5 @@
+---
+- hosts: test
+  remote_user: "{{ hostvars[groups['test'][0]]['ansible_ssh_user'] }}"
+  roles:
+    - role: 'roles/{{ role }}'

@@ -1,0 +1,62 @@
+---
+ssh_port: "{{ hostvars[groups['test'][0]]['ansible_ssh_port'] }}"
+private_key_file: "{{ hostvars[groups['test'][0]]['ansible_ssh_private_key_file'] }}"
+cur_dir: "{{ lookup('env','PWD') }}"
+user: "{{ hostvars[groups['test'][0]]['ansible_ssh_user'] }}"
+install_xcode_script: install-xcode-console.sh
+
+homebrew_cask_appdir: /usr/local/opt
+
+homebrew_taps:
+  - caskroom/cask
+  - caskroom/versions
+
+homebrew_packages:
+  - ansible
+  - automake
+  - bash-completion
+  - cmake
+  - csvkit
+  - fzf
+  - gcc
+  - git
+  - glib
+  - glide
+  - gradle
+  - groovy
+  - go
+  - htop
+  - htop-osx
+  - httpie
+  - iftop
+  - jq
+  - kotlin
+  - libtool
+  - libxml2
+  - libyaml
+  - mc
+  - mongodb
+  - nmap
+  - ntfs-3g
+  - openssl
+  - postgresql
+  - python
+  - python@2
+  - sysdig
+  - ranger
+  - readline
+  - rlwrap
+  - sbt
+  - spatialindex
+  - sqlite
+  - sysdig
+  - tmux
+  - wget
+  - zsh
+  - zsh-autosuggestions
+  - zsh-completions
+
+homebrew_cask_apps:
+  - java8
+  - osxfuse
+  - emacs
