@@ -29,6 +29,7 @@ homebrew_packages:
   - htop-osx
   - httpie
   - iftop
+  - ipython
   - jq
   - kotlin
   - libtool
@@ -59,4 +60,11 @@ homebrew_packages:
 homebrew_cask_apps:
   - java8
   - osxfuse
+  - docker
+  - dropbox
   - emacs
+  - iterm2
+  - macports
+  - vagrant
+  - virtualbox
+  - wireshark

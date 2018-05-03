@@ -1,4 +1,5 @@
 ---
+
 - name: "Sync {{ install_xcode_script }}"
   synchronize:
     src: "{{ cur_dir }}/roles/{{ role }}/scripts/{{ install_xcode_script }}"
@@ -8,10 +9,6 @@
 
 - name: "Install Xcode"
   shell: sh /Users/{{ user }}/{{ install_xcode_script }}
-
-# - name: "Update Command Line Tools for Xcode"
-#   become: yes
-#   shell: softwareupdate -i $(softwareupdate -l | grep '\*.*Command Line Tools (macOS High Sierra' | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
 
 - name: "Install homebrew"
   shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -45,8 +42,9 @@
     - brew
 
 - name: "Ranger configs"
-  shell: ranger --copy-config=all
-
+  shell: /usr/local/bin/ranger --copy-config=all
+  ignore_errors: yes
+  
 - name: "Sync ranger rc.conf"
   synchronize:
     src: "{{ cur_dir }}/roles/{{ role }}/config/ranger/rc.conf"
@@ -61,3 +59,18 @@
     rsync_opts:
       - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
 
+- name: "Download .emacs.d archive and unarchive it"
+  shell: /usr/local/bin/wget https://www.dropbox.com/s/r3agg6udqy5x1so/emacs.d.tar && tar -xvf emacs.d.tar
+
+- name: "Sync .zshrc"
+  synchronize:
+    src: "{{ cur_dir }}/roles/{{ role }}/config/.zshrc"
+    dest: "/Users/{{ user }}/"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
+
+- name: "Install oh-my-zsh"
+  shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+- name: "Install fzf fuzzy completion"
+  shell: $(/usr/local/bin/brew --prefix)/opt/fzf/install

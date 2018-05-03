@@ -14,3 +14,4 @@ if [ $? -ne 0 ]; then
 else
   echo "Xcode CLI tools OK"
 fi
+
