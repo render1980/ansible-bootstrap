@@ -1,2 +1,5 @@
 *.box
 .vagrant/
+*.swp
+*.retry
+*~

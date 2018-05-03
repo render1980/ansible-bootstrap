@@ -2,11 +2,9 @@
 
 Bootstrap your environment
 
-## Preparations
+## Mac OS X Vagrant Box preparation
 
-### Mac
-
-You need to prepare virtual image which will be used by vagrant. One of the ways is described here.
+You need to prepare virtual image which will be used by vagrant manually. One of the ways is described here.
 
 1) Use this https://github.com/timsutton/osx-vm-templates to prepare iso/vdi
 
@@ -38,9 +36,11 @@ It will prepare package.box (name 'package' by default) in current directory.
 vagrant box add --name osx package.box
 ```
 
-## Bootstrap
+With rh/deb we use ready boxes from vagrant repo.
 
-### Mac OS X bootstrap
+## Testing with Vagrant
+
+### Mac OS X
 
 ```
 VAGRANT_OS='mac' vagrant up

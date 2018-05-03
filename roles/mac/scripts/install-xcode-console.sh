@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
   echo "Xcode CLI tools not found. Installing them..."
   touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
   PROD=$(softwareupdate -l |
-    grep "\*.*Command Line Tools (macOS High Sierra)" |
+    grep "\*.*Command Line Tools (macOS High Sierra" |
     head -n 1 | awk -F"*" '{print $2}' |
     sed -e 's/^ *//' |
     tr -d '\n')
