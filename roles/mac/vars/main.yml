@@ -5,6 +5,8 @@ cur_dir: "{{ lookup('env','PWD') }}"
 user: "{{ hostvars[groups['test'][0]]['ansible_ssh_user'] }}"
 install_xcode_script: install-xcode-console.sh
 
+projects_home_dir: /home/{{ user }}/go/src
+
 homebrew_cask_appdir: /usr/local/opt
 
 homebrew_taps:
@@ -13,6 +15,7 @@ homebrew_taps:
 
 homebrew_packages:
   - ansible
+  - asciidoc
   - automake
   - bash-completion
   - cmake
@@ -48,7 +51,6 @@ homebrew_packages:
   - readline
   - rlwrap
   - sbt
-  - spatialindex
   - sqlite
   - sysdig
   - tmux
@@ -59,12 +61,16 @@ homebrew_packages:
 
 homebrew_cask_apps:
   - java8
-  - osxfuse
+  - google-chrome
   - docker
   - dropbox
   - emacs
+  - intellij-idea-ce
   - iterm2
   - macports
+  - openoffice
+  - osxfuse
+  - telegram
   - vagrant
   - virtualbox
   - wireshark
