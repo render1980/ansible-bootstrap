@@ -81,3 +81,9 @@
 - name: "Install sdkman"
   shell: curl -s "https://get.sdkman.io" | bash
   
+- name: "Sync .tmux.conf"
+  synchronize:
+    src: "{{ cur_dir }}/roles/{{ role }}/config/.tmux.conf"
+    dest: "/Users/{{ user }}/"
+    rsync_opts:
+      - "-e ssh -p {{ ssh_port }} -i {{ cur_dir }}/{{ private_key_file }}"
