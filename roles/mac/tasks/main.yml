@@ -64,6 +64,12 @@
 
 - name: "Download .emacs.d archive and unarchive it"
   shell: /usr/local/bin/wget https://www.dropbox.com/s/r3agg6udqy5x1so/emacs.d.tar && tar -xvf emacs.d.tar
+  
+- name: "Fix symlink to pip"
+  shell: ln -sf /usr/local/bin/pip-2.7 ~/.emacs.d/.python-environments/default/bin/pip
+
+- name: "Fix symlink to jediepcserver"
+  shell: ln -sf /usr/local/bin/jediepcserver ~/.emacs.d/.python-environments/default/bin/jediepcserver
 
 - name: "Sync .zshrc"
   synchronize:
