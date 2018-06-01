@@ -45,8 +45,9 @@
 
 ;; LOAD ;;
 (setq load-path
-      (cons (concat (getenv "HOME") ".emacs.d/elpa")
+      (cons (concat (getenv "HOME") "/.emacs.d/elpa")
 	    load-path))
+(add-to-list 'load-path "~/.emacs.d/elpa/")
 
 ;;; REMOVE DEFAULT BUFFERS ;;;
 (setq initial-scratch-message "")
@@ -67,6 +68,16 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+;;; VARS ;;;
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell go-tag go-rename go-imports go-fill-struct go-errcheck go-eldoc go-direx go-dlv go-add-tags go-complete go-mode pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme flycheck-go-build-tags flycheck-go-build-executable all))))
 
 ;;; COMMANDS ;;;
 
@@ -148,7 +159,7 @@ That is, a string used to represent it on the tab bar."
 
 ;; GOLANG ;;
 (setenv "GOPATH" (concat (getenv "HOME") "/go"))
-(setenv "GOROOT" "/usr/local/Cellar/go/1.6.1/libexec")
+(setenv "GOROOT" "/usr/local/Cellar/go/1.10.2/libexec")
 
 (defun set-exec-path-from-shell-PATH ()
   "Set exec path from shell."
@@ -161,12 +172,9 @@ That is, a string used to represent it on the tab bar."
     (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
 
-(setq exec-path (cons "/usr/local/Cellar/go/1.10/libexec/bin" exec-path))
+(setq exec-path (cons "/usr/local/Cellar/go/1.10.2/libexec/bin" exec-path))
 (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
 (add-hook 'before-save-hook 'gofmt-before-save)
-
-;; (add-hook 'go-mode-hook (lambda ()
-;;                           (local-set-key (kbd \"s-b\") 'godef-jump)))
 
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
@@ -184,9 +192,6 @@ That is, a string used to represent it on the tab bar."
   (auto-complete-mode 1))
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
 
 (require 'go-guru)
 
@@ -247,14 +252,6 @@ That is, a string used to represent it on the tab bar."
 ;; Clojure ;;
 (autoload 'inf-clojure "inf-clojure" "Run an inferior Clojure process" t)
 (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido exec-path-from-shell evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme all))))
 
 ;; ;;; SHELL ;;; ;;
 
