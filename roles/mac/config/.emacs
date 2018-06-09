@@ -115,6 +115,19 @@
 (require 'neotree)
 (setq neo-window-width 30)
 
+;; RANGER ;;
+(setq ranger-cleanup-on-disable t)
+(setq ranger-show-hidden t)
+(setq ranger-modify-header t)
+(setq ranger-header-func 'ranger-header-line)
+(setq ranger-parent-header-func 'ranger-parent-header-line)
+(setq ranger-preview-header-func 'ranger-preview-header-line)
+(setq ranger-hide-cursor nil)
+(setq ranger-footer-delay 0.2)
+(setq ranger-preview-delay 0.040)
+(setq ranger-parent-depth 0)
+(setq ranger-preview-file t)
+
 ;; PROJECTILE ;;
 (require 'projectile)
 
