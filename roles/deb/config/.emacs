@@ -148,7 +148,7 @@ That is, a string used to represent it on the tab bar."
 
 ;; GOLANG ;;
 (setenv "GOPATH" (concat (getenv "HOME") "/go"))
-(setenv "GOROOT" "/usr/local/Cellar/go/1.6.1/libexec")
+(setenv "GOROOT" "/usr/local/Cellar/go/1.10.3/libexec")
 
 (defun set-exec-path-from-shell-PATH ()
   "Set exec path from shell."
