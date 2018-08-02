@@ -12,13 +12,14 @@
 (setq default-directory (concat (getenv "HOME") "/" "go/src"))
 (dumb-jump-mode 1)
 (global-linum-mode 1)
+(global-flycheck-mode 1)
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 ;;; KEY BINDINGS ;;;
 (global-set-key (kbd "C-d") 'neotree)
 (global-set-key (kbd "C-x C-d") 'neotree-hide)
 (global-set-key (kbd "M-/") 'complete-tag)
 (global-set-key (kbd "C-x C-p") 'python-mode)
-(global-set-key (kbd "C-f") 'projectile-find-file)
 (global-set-key (kbd "C-}") 'end-of-buffer)
 (global-set-key (kbd "C-{") 'beginning-of-buffer)
 (global-set-key (kbd "s-s") 'save-buffer)
@@ -75,9 +76,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flymake-cppcheck-command "/usr/local/bin/cppcheck")
+ '(flymake-cppcheck-enable "all")
  '(package-selected-packages
    (quote
-    (exec-path-from-shell go-tag go-rename go-imports go-fill-struct go-errcheck go-eldoc go-direx go-dlv go-add-tags go-complete go-mode pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme flycheck-go-build-tags flycheck-go-build-executable all))))
+    (company company-go pygen elpygen elpy ranger company-c-headers company-cmake auto-complete-clang flycheck-clang-analyzer cpputils-cmake cppcheck flymake-cppcheck exec-path-from-shell go-tag go-rename go-imports go-fill-struct go-errcheck go-eldoc go-direx go-dlv go-add-tags go-complete go-mode pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme flycheck-go-build-tags flycheck-go-build-executable all))))
 
 ;;; COMMANDS ;;;
 
@@ -171,8 +174,13 @@ That is, a string used to represent it on the tab bar."
 ;; (add-hook 'scala-mode-hook 'ensime-mode 'ensime-scala-mode-hook)
 
 ;; GOLANG ;;
+(require 'go-guru)
+(require 'go-eldoc)
+
 (setenv "GOPATH" (concat (getenv "HOME") "/go"))
 (setenv "GOROOT" "/usr/local/Cellar/go/1.10.2/libexec")
+(setq exec-path (cons (concat (getenv "GOROOT") "/bin") exec-path))
+(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
 
 (defun set-exec-path-from-shell-PATH ()
   "Set exec path from shell."
@@ -185,9 +193,9 @@ That is, a string used to represent it on the tab bar."
     (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
 
-(setq exec-path (cons "/usr/local/Cellar/go/1.10.2/libexec/bin" exec-path))
-(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
 (add-hook 'before-save-hook 'gofmt-before-save)
+(setq-default gofmt-command "goimports")
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
@@ -201,17 +209,25 @@ That is, a string used to represent it on the tab bar."
            "go build -v && go test -v && go vet"))
   ; Godef jump key binding
   (local-set-key (kbd "s-b") 'godef-jump)
+  (local-set-key (kbd "s-7") 'go-guru-callers)
+  (local-set-key (kbd "s-2") 'godoc-at-point)
+  (local-set-key (kbd "s-i") 'go-goto-imports)
+  (local-set-key (kbd "M-l") 'gofmt)
+  (local-set-key (kbd "M-s") 'go-rename)
   (go-guru-hl-identifier-mode)
   (auto-complete-mode 1))
-
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-(require 'go-guru)
+;; (add-hook 'go-mode-hook (lambda ()
+                            ;; (set (make-local-variable 'company-backends) '(company-go))
+                            ;; (company-mode)))
 
 
 ;;; PYTHON ;;;
-(global-flycheck-mode 1)
 (autoload 'pylint "pylint")
+
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "s-i") 'py-import-check)))
 
 (defun jedi-config:setup-keys ()
   "Setup keys for Jedi."
@@ -226,16 +242,15 @@ That is, a string used to represent it on the tab bar."
 (put 'scroll-left 'disabled nil)
 (autoload 'jedi:setup "jedi" nil t)
 
-;; (add-hook 'python-mode-hook
-;; 	  '(pylint-add-menu-items
-;; 	    '(pylint-add-key-bindings))
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "s-i") 'py-import-check)))
 ;; autoimport
 
 (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
+
+(elpy-enable)
+(add-hook 'elpy-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "M-<right>") 'forward-word)
+	    (local-set-key (kbd "M-<left>") 'backward-word)))
 
 ;; PHP ;;
 
@@ -275,5 +290,33 @@ That is, a string used to represent it on the tab bar."
 	    (local-set-key (kbd "s-]") 'dumb-jump-quick-look)
 	    (auto-complete-mode 1)))
 
+;; C C++ ;;
+(require 'flymake-cppcheck)
+(require 'cpputils-cmake)
+(add-hook 'c-mode-hook 'flymake-cppcheck-load)
+(add-hook 'c++-mode-hook 'flymake-cppcheck-load)
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (if (derived-mode-p 'c-mode 'c++-mode)
+                (cppcm-reload-all)
+              )))
+(add-hook 'c90-mode-hook (lambda () (cppcm-reload-all)))
+;;; OPTIONAL, avoid typing full path when starting gdb
+(global-set-key (kbd "C-c C-g")
+		'(lambda ()(interactive) (gud-gdb (concat "gdb --fullname " (cppcm-get-exe-path-current-buffer)))))
+;;; OPTIONAL, some users need specify extra flags forwarded to compiler
+(setq cppcm-extra-preprocss-flags-from-user '("-I/usr/src/linux/include" "-DNDEBUG"))
+
+(with-eval-after-load 'flycheck
+   (require 'flycheck-clang-analyzer)
+   (flycheck-clang-analyzer-setup))
+
 (provide '.emacs)
 ;;; .emacs ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
