@@ -211,7 +211,8 @@ That is, a string used to represent it on the tab bar."
   (local-set-key (kbd "s-b") 'godef-jump)
   (local-set-key (kbd "s-7") 'go-guru-callers)
   (local-set-key (kbd "s-2") 'godoc-at-point)
-  (local-set-key (kbd "s-i") 'go-goto-imports)
+  (local-set-key (kbd "M-i") 'go-goto-imports)
+  (local-set-key (kbd "M-f") 'go-goto-function)
   (local-set-key (kbd "M-l") 'gofmt)
   (local-set-key (kbd "M-s") 'go-rename)
   (go-guru-hl-identifier-mode)
@@ -220,7 +221,6 @@ That is, a string used to represent it on the tab bar."
 ;; (add-hook 'go-mode-hook (lambda ()
                             ;; (set (make-local-variable 'company-backends) '(company-go))
                             ;; (company-mode)))
-
 
 ;;; PYTHON ;;;
 (autoload 'pylint "pylint")
