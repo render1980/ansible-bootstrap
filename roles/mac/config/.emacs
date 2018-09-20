@@ -165,6 +165,9 @@ That is, a string used to represent it on the tab bar."
 
 (tabbar-mode 1)
 
+;; iEdit ;;
+(require 'iedit)
+
 ;;; LANG ;;;
 
 ;; ENSIME ;;
