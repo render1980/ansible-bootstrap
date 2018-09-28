@@ -74,3 +74,11 @@ homebrew_cask_apps:
   - vagrant
   - virtualbox
   - wireshark
+
+emacs_langs:
+  - go
+  - java
+  - python
+  - php
+  - sh
+  - c
