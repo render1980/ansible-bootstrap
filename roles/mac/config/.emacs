@@ -13,7 +13,7 @@
 (dumb-jump-mode 1)
 (global-linum-mode 1)
 (global-flycheck-mode 1)
-;; (add-hook 'after-init-hook 'global-company-mode)
+(exec-path-from-shell-initialize)
 
 ;;; --- KEY BINDINGS --- ;;;
 (global-set-key (kbd "C-d") 'neotree)
@@ -43,21 +43,26 @@
 (global-set-key (kbd "s-R") 'rgrep)
 (global-set-key (kbd "C-r") 'replace-search-function)
 (global-set-key (kbd "s-.") 'shell-command)
+(global-set-key (kbd "M-<right>") 'forward-word)
+(global-set-key (kbd "M-<left>") 'backward-word)
+(global-set-key (kbd "M-<up>") 'backward-paragraph)
+(global-set-key (kbd "M-<down>") 'forward-paragraph)
 
-;;; --- SETTINGS --- ;;;
-;; LOAD ;;
+;; --- SETTINGS --- ;;
+;;; LOAD ;;;
 (setq load-path
       (cons (concat (getenv "HOME") "/.emacs.d/elpa")
 	    load-path))
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
-;; REMOVE DEFAULT BUFFERS ;;
+
+;;; REMOVE DEFAULT BUFFERS ;;;
 (setq initial-scratch-message "")
 (setq-default message-log-max nil)
 (kill-buffer "*Messages*")
 (setq inhibit-startup-buffer-menu t)
 
-;; BUFFERS ;;
+;;; BUFFERS ;;;
 (defun start-other-emacs ()
   "Start another Emacs process to open an independent Emacs window."
   (interactive)
@@ -66,12 +71,12 @@
   (start-process "emacs" "*other-emacs*" "emacs"))
 (global-set-key (kbd "C-x 5 2") 'start-other-emacs)
 
-;; REPO ;;
+;;; REPO ;;;
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-;; VARS ;;
+;;; VARS ;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -81,7 +86,7 @@
  '(flymake-cppcheck-enable "all")
  '(package-selected-packages
    (quote
-    (company company-go pygen elpygen elpy ranger company-c-headers company-cmake auto-complete-clang flycheck-clang-analyzer cpputils-cmake cppcheck flymake-cppcheck exec-path-from-shell go-tag go-rename go-imports go-fill-struct go-errcheck go-eldoc go-direx go-dlv go-add-tags go-complete go-mode pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme flycheck-go-build-tags flycheck-go-build-executable all))))
+    (iedit function-args ggtags company company-go pygen elpygen elpy ranger company-c-headers company-cmake auto-complete-clang flycheck-clang-analyzer cpputils-cmake cppcheck flymake-cppcheck exec-path-from-shell go-tag go-rename go-imports go-fill-struct go-errcheck go-eldoc go-direx go-dlv go-add-tags go-complete go-mode pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme flycheck-go-build-tags flycheck-go-build-executable all))))
 
 ;;; --- COMMANDS --- ;;;
 
@@ -170,28 +175,11 @@ That is, a string used to represent it on the tab bar."
 (require 'iedit)
 
 ;;; --- LANG --- ;;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (meghanada realgud multi-term iedit ctags ggtags helm-gtags helm cpputils-cmake flymake-cppcheck go-rename go-eldoc cider ranger markdown-mode dockerfile-mode docker pymacs flycheck-pycheckers py-import-check python-pylint pylint zlc yaml-mode tabbar spacemacs-theme projectile php-mode php+-mode nlinum neotree jedi-direx jdee inf-clojure hlinum go-guru go-autocomplete git-commit git-command git-blame fsharp-mode flymake-php flymake-go flymake flycheck-clojure flx-ido exec-path-from-shell evil-tabs ensime ein egg dumb-jump dracula-theme cyberpunk-theme autopair atom-dark-theme all))))
-
-;; GOLANG ;;
-(require 'go-custom)
-;; PHP ;;
-(require 'php-custom)
-;; SHELL ;;
-(require 'sh-custom)
-;; JAVA ;;
-(require 'java-custom)
-;; PYTHON ;;
 (require 'python-custom)
-;; C/C++ ;;
+(require 'php-custom)
 (require 'c-custom)
-
+(require 'sh-custom)
+(require 'go-custom)
 
 (provide '.emacs)
 ;;; .emacs ends here
