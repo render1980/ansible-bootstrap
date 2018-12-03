@@ -180,6 +180,7 @@ That is, a string used to represent it on the tab bar."
 (require 'c-custom)
 (require 'sh-custom)
 (require 'go-custom)
+(require 'js-custom)
 
 (provide '.emacs)
 ;;; .emacs ends here
