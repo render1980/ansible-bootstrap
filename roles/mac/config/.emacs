@@ -181,6 +181,7 @@ That is, a string used to represent it on the tab bar."
 (require 'sh-custom)
 (require 'go-custom)
 (require 'js-custom)
+(require 'yaml-custom)
 
 (provide '.emacs)
 ;;; .emacs ends here
