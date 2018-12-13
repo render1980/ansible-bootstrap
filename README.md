@@ -60,3 +60,8 @@ ansible-playbook -i hosts-vagrant main.yml --extra-vars "role=rh"
 VAGRANT_OS='deb' vagrant up
 ansible-playbook -i hosts-vagrant main.yml --extra-vars "role=deb"
 ```
+
+### TODO
+
+* install brew
+* install ansible to install this shit
