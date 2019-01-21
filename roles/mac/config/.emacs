@@ -14,6 +14,8 @@
 (global-linum-mode 1)
 (global-flycheck-mode 1)
 (exec-path-from-shell-initialize)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
 ;;; --- KEY BINDINGS --- ;;;
 (global-set-key (kbd "C-d") 'neotree)
