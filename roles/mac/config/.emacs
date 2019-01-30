@@ -125,6 +125,7 @@
 ;; NEOTREE ;;
 (require 'neotree)
 (setq neo-window-width 30)
+(setq-default neo-show-hidden-files t)
 
 ;; RANGER ;;
 (setq ranger-cleanup-on-disable t)
