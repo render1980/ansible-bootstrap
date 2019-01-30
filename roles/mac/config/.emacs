@@ -126,6 +126,13 @@
 (require 'neotree)
 (setq neo-window-width 30)
 (setq-default neo-show-hidden-files t)
+(add-hook 'neotree-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "s-d") 'neotree-delete-node)
+	    (local-set-key (kbd "s-n") 'neotree-create-node)
+	    (local-set-key (kbd "s-r") 'neotree-rename-node)
+	    (local-set-key (kbd "s-c") 'neotree-copy-node)
+	    (local-set-key (kbd "s-R") 'neotree-refresh)))
 
 ;; RANGER ;;
 (setq ranger-cleanup-on-disable t)
