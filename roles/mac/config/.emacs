@@ -194,6 +194,8 @@ That is, a string used to represent it on the tab bar."
 (require 'go-custom)
 (require 'js-custom)
 (require 'yaml-custom)
+(require 'md-custom)
+(require 'lisp-custom)
 
 (provide '.emacs)
 ;;; .emacs ends here
