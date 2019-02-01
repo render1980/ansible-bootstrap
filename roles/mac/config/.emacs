@@ -16,6 +16,7 @@
 (exec-path-from-shell-initialize)
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+(toggle-scroll-bar -1)
 
 ;;; --- KEY BINDINGS --- ;;;
 (global-set-key (kbd "C-d") 'neotree)
