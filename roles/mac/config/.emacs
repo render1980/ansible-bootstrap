@@ -126,6 +126,7 @@
 (require 'neotree)
 (setq neo-window-width 30)
 (setq-default neo-show-hidden-files t)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (add-hook 'neotree-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "s-d") 'neotree-delete-node)
