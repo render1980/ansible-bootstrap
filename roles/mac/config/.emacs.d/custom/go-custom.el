@@ -54,4 +54,6 @@
                             ;; (set (make-local-variable 'company-backends) '(company-go))
                             ;; (company-mode)))
 
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+
 (provide 'go-custom)
