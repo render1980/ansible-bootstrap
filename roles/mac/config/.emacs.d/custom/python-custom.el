@@ -9,7 +9,6 @@
   "Setup keys for Jedi."
   (local-set-key (kbd "s-b") 'jedi:goto-definition)
   (local-set-key (kbd "s-2") 'jedi:show-doc)
-  (local-set-key (kbd "s-7") 'helm-jedi-related-names)
   (local-set-key (kbd "s-8") 'elpy-rgrep-symbol)
   (local-set-key (kbd "s-i") 'py-import-check))
 (add-hook 'python-mode-hook 'jedi-config:setup-keys)
