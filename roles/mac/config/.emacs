@@ -50,7 +50,10 @@
 (global-set-key (kbd "M-<left>") 'backward-word)
 (global-set-key (kbd "M-<up>") 'backward-paragraph)
 (global-set-key (kbd "M-<down>") 'forward-paragraph)
-(global-set-key (kbd "s-7") 'occur)
+(global-set-key (kbd "M-s") 'iedit-mode)
+(global-set-key (kbd "s-7") 'swiper-all-thing-at-point)
+(global-set-key (kbd "C-s") 'isearch-forward-symbol-at-point)
+
 
 ;; --- SETTINGS --- ;;
 ;;; LOAD ;;;
