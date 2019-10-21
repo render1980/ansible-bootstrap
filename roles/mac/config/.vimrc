@@ -1,6 +1,7 @@
 filetype off
 filetype plugin indent on
 :syntax on
+set backspace=indent,eol,start
 set laststatus=2
 set background=dark
 colorscheme solarized
@@ -34,10 +35,9 @@ let g:lightline = {
 """ MAPPINGS    """
 """ *********** """
 
-" Markdown
-nmap <C-s> <Plug>MarkdownPreview
-nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-p> <Plug>MarkdownPreviewToggle
+" qf window
+nnoremap ‘ :cn<CR>
+nnoremap “ :cp<CR>
 
 """ ************** """
 """ Plugin Install """
@@ -68,6 +68,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git'
+Plug 'https://github.com/romainl/vim-qf.git'
+Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
 " Initialize plugin system
 call plug#end()
 " call mkdp#util#install()
