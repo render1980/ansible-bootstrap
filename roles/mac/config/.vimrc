@@ -1,9 +1,15 @@
+if has('mouse')
+  set mouse=a
+endif
+
 filetype off
 filetype plugin indent on
 :syntax on
-set backspace=indent,eol,start
 set laststatus=2
 set background=dark
+set nocompatible
+set backspace=2
+set backspace=indent,eol,start
 colorscheme solarized
 
 call pathogen#helptags()
@@ -16,6 +22,7 @@ execute pathogen#infect()
 :set runtimepath^=~/.vim/bundle/vim-fugitive
 :set runtimepath^=~/.vim/bundle/vim-ingo-library
 :set runtimepath^=~/.vim/bundle/vim-SyntaxRange
+:set runtimepath^=~/.vim/bundle/vim-ansible-yaml
 :set runtimepath^=~/.vim/bundle/vim-markdown
 
 let g:lightline = {
@@ -35,9 +42,27 @@ let g:lightline = {
 """ MAPPINGS    """
 """ *********** """
 
-" qf window
-nnoremap ‘ :cn<CR>
-nnoremap “ :cp<CR>
+" Markdown
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
+nmap “ :cp<CR>
+nmap ‘ :cn<CR>
+
+nmap T :tabnew<CR>
+nmap ’ :tabNext<CR>
+nmap ” :tabprevious<CR>
+
+nmap <C-p> :CtrlP<CR>
+
+:map! <M-BS> <C-W>
+
+" go
+nmap F :GoFmt<CR>
+nmap ˆ :GoImports<CR>
+nmap gr :GoRename<CR>
+nmap gb :GoBuild<CR>
 
 """ ************** """
 """ Plugin Install """
@@ -65,11 +90,13 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git'
 Plug 'https://github.com/romainl/vim-qf.git'
 Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
+Plug 'https://github.com/davidhalter/jedi-vim.git'
+Plug 'ctrlpvim/ctrlp.vim'
+" Java
+Plug 'artur-shaik/vim-javacomplete2'
 " Initialize plugin system
 call plug#end()
 " call mkdp#util#install()
