@@ -95,6 +95,9 @@ Plug 'https://github.com/romainl/vim-qf.git'
 Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
 Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kien/tabman.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'https://github.com/pearofducks/ansible-vim.git'
 " Java
 Plug 'artur-shaik/vim-javacomplete2'
 " Initialize plugin system
