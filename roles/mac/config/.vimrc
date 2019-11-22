@@ -50,6 +50,9 @@ nmap <C-p> <Plug>MarkdownPreviewToggle
 nmap “ :cp<CR>
 nmap ‘ :cn<CR>
 
+nmap l[ :lprevious<CR>
+nmap l] :lnext<CR>
+
 nmap T :tabnew<CR>
 nmap ’ :tabNext<CR>
 nmap ” :tabprevious<CR>
