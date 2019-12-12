@@ -10,6 +10,8 @@ set background=dark
 set nocompatible
 set backspace=2
 set backspace=indent,eol,start
+set encoding=utf-8
+set fileencoding=utf-8
 colorscheme solarized
 
 call pathogen#helptags()
