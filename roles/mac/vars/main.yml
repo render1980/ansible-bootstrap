@@ -58,6 +58,13 @@ homebrew_packages:
   - zsh
   - zsh-autosuggestions
   - zsh-completions
+  - editorconfig
+  - yq
+  - virtualenv
+  - j2
+  - jinja2-cli
+  - openvpn
+  - 
 
 homebrew_cask_apps:
   - java8
