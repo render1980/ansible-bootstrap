@@ -31,6 +31,14 @@
     - apps
     - cask
 
+- name: "Install pip packages"
+  pip:
+    name: "{{ item }}"
+    state: forcereinstall
+  with_items: "{{ pip_packages }}"
+  tags:
+    - apps
+
 - name: "Ensure configured homebrew packages are installed."
   homebrew:
     name: "{{ item.name | default(item) }}"
