@@ -12,6 +12,7 @@ homebrew_cask_appdir: /usr/local/opt
 homebrew_taps:
   - caskroom/cask
   - caskroom/versions
+  - homebrew/cask-fonts
 
 homebrew_packages:
   - ansible
