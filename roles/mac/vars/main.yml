@@ -89,3 +89,7 @@ emacs_langs:
   - php
   - sh
   - c
+
+pip_packages:
+  - pyside2
+  - jupyter
