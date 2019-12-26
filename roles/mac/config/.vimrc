@@ -12,10 +12,17 @@ set backspace=2
 set backspace=indent,eol,start
 set encoding=utf-8
 set fileencoding=utf-8
-colorscheme solarized
+set wrap linebreak nolist
+set cursorline
+
+set ttimeoutlen=10 "Понижаем задержку ввода escape последовательностей
+let &t_SI.="\e[5 q" "SI = режим вставки
+let &t_SR.="\e[3 q" "SR = режим замены
+let &t_EI.="\e[1 q" "EI = нормальный режим
 
 call pathogen#helptags()
 execute pathogen#infect()
+colorscheme solarized
 
 :set runtimepath^=~/.vim/bundle/node
 :set runtimepath^=~/.vim/bundle/ansible-vim
@@ -24,8 +31,9 @@ execute pathogen#infect()
 :set runtimepath^=~/.vim/bundle/vim-fugitive
 :set runtimepath^=~/.vim/bundle/vim-ingo-library
 :set runtimepath^=~/.vim/bundle/vim-SyntaxRange
-:set runtimepath^=~/.vim/bundle/vim-ansible-yaml
 :set runtimepath^=~/.vim/bundle/vim-markdown
+
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/plugged/vim-yaml/after/syntax/yaml.vim
 
 let g:lightline = {
       \ 'active': {
@@ -40,6 +48,8 @@ let g:lightline = {
       \ },
       \ }
 
+let g:EditorConfig_core_mode = 'external_command'
+
 """ *********** """
 """ MAPPINGS    """
 """ *********** """
@@ -49,14 +59,12 @@ nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
-nmap “ :cp<CR>
-nmap ‘ :cn<CR>
-
-nmap l[ :lprevious<CR>
-nmap l] :lnext<CR>
+" Quick Find Window
+nnoremap ‘ :cn<CR>
+nnoremap “ :cp<CR>
 
 nmap T :tabnew<CR>
-nmap ’ :tabNext<CR>
+nmap ’ :tabnext<CR>
 nmap ” :tabprevious<CR>
 
 nmap <C-p> :CtrlP<CR>
@@ -69,6 +77,16 @@ nmap ˆ :GoImports<CR>
 nmap gr :GoRename<CR>
 nmap gb :GoBuild<CR>
 
+""" ******* """
+""" Airline """
+""" ******* """
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#keymap#enabled = 0
+"let g:airline_section_z = "\ue0a1:%l/%L Col:%c"
+"let g:Powerline_symbols='unicode'
+"let g:airline#extensions#xkblayout#enabled = 0
+"set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
+
 """ ************** """
 """ Plugin Install """
 """ ************** """
@@ -77,34 +95,35 @@ nmap gb :GoBuild<CR>
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'vim-airline/vim-airline'
 Plug 'junegunn/vim-easy-align'
-" Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Using a non-master branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
-" Plugin options
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-" Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Unmanaged plugin (manually installed and updated)
+Plug '~/my-prototype-plugin'
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git'
 Plug 'https://github.com/romainl/vim-qf.git'
 Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
-Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kien/tabman.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'https://github.com/pearofducks/ansible-vim.git'
 " Java
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'tpope/vim-fugitive'
+Plug 'stephpy/vim-yaml'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+"Plug 'jupyter-vim/jupyter-vim'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'Valloric/YouCompleteMe'
+Plug 'neomake/neomake'
+
 " Initialize plugin system
 call plug#end()
 " call mkdp#util#install()
@@ -112,7 +131,7 @@ call plug#end()
 """ ***************** """
 """ Markdown-preview  """
 """ ***************** """
-
+set nofoldenable
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
 let g:mkdp_auto_start = 0
@@ -179,3 +198,9 @@ let g:mkdp_port = ''
 " preview page title
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
+
+""" ************ """
+
+" yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
