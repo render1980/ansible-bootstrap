@@ -22,6 +22,7 @@ let &t_EI.="\e[1 q" "EI = нормальный режим
 
 call pathogen#helptags()
 execute pathogen#infect()
+let g:solarized_termcolors=256
 colorscheme solarized
 
 :set runtimepath^=~/.vim/bundle/node
