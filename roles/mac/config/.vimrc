@@ -8,7 +8,7 @@ filetype plugin indent on
 set laststatus=2
 set background=dark
 set nocompatible
-set backspace=2
+"set backspace=2
 set backspace=indent,eol,start
 set encoding=utf-8
 set fileencoding=utf-8
@@ -25,7 +25,6 @@ execute pathogen#infect()
 colorscheme solarized
 
 :set runtimepath^=~/.vim/bundle/node
-:set runtimepath^=~/.vim/bundle/ansible-vim
 :set runtimepath^=~/.vim/bundle/ctrlp.vim
 :set runtimepath^=~/.vim/bundle/vim-javascript
 :set runtimepath^=~/.vim/bundle/vim-fugitive
@@ -77,6 +76,8 @@ nmap ˆ :GoImports<CR>
 nmap gr :GoRename<CR>
 nmap gb :GoBuild<CR>
 
+nnoremap <silent> * :vim <cword> <C-R><C-W> ** <CR>
+
 """ ******* """
 """ Airline """
 """ ******* """
@@ -121,7 +122,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 "Plug 'jupyter-vim/jupyter-vim'
 Plug 'jmcantrell/vim-virtualenv'
-Plug 'Valloric/YouCompleteMe'
+"""Plug 'Valloric/YouCompleteMe'
 Plug 'neomake/neomake'
 
 " Initialize plugin system
