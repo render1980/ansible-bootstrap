@@ -94,3 +94,5 @@ emacs_langs:
 pip_packages:
   - pyside2
   - jupyter
+  - qtconsole
+  - pyqt5
