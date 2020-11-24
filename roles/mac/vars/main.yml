@@ -98,4 +98,5 @@ pip_packages:
   - pyqt5
   - jupyterlab
   - jupyter-notebook
-  
+  - pylint
+  - flake8
