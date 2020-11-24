@@ -107,15 +107,13 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git'
-Plug 'https://github.com/romainl/vim-qf.git'
 Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kien/tabman.vim'
-Plug 'davidhalter/jedi-vim'
 Plug 'https://github.com/pearofducks/ansible-vim.git'
+Plug 'preservim/nerdcommenter'
 " Java
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'tpope/vim-fugitive'
@@ -123,9 +121,14 @@ Plug 'stephpy/vim-yaml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'jupyter-vim/jupyter-vim'
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'neomake/neomake'
+" Python
+Plug 'https://github.com/romainl/vim-qf.git'
+Plug 'davidhalter/jedi-vim'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
