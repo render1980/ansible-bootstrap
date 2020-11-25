@@ -59,7 +59,7 @@ ZSH_THEME="avit"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting
+  git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting docker
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -99,14 +99,11 @@ export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 [ -f ~/.fzf.bash ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
-# FileSearch
+#############
+# FUNCTIONS #
+#############
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
-#
-# #mkdir and cd
 function mkcd() { mkdir -p "$@" && cd "$_"; }
-#
-# # Aliases
-#
-# # Use vim for editing config files
-alias zshconfig="vim ~/.zshrc"
+
+eval "$(pyenv init -)"
