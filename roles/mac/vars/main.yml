@@ -21,6 +21,8 @@ homebrew_packages:
   - bash-completion
   - cmake
   - csvkit
+  - dry
+  - fx
   - fzf
   - gcc
   - git
@@ -65,7 +67,6 @@ homebrew_packages:
   - j2
   - jinja2-cli
   - openvpn
-  - 
 
 homebrew_cask_apps:
   - java8
@@ -100,3 +101,4 @@ pip_packages:
   - jupyter-notebook
   - pylint
   - flake8
+  - rtv
