@@ -56,7 +56,9 @@ homebrew_packages:
   - sbt
   - sqlite
   - sysdig
+  - task
   - tmux
+  - tree
   - wget
   - zsh
   - zsh-autosuggestions
