@@ -270,3 +270,6 @@ command! PrettyXML call DoPrettyXML()
 """ ******** """
 """  PYTHON  """
 """ ******** """
+let g:jedi#use_tabs_not_buffers = 1
+
+com! PrettyJson %!python -m json.tool
