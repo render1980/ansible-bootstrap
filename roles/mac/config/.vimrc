@@ -56,6 +56,12 @@ let g:EditorConfig_core_mode = 'external_command'
 """ MAPPINGS    """
 """ *********** """
 
+""" INCLUDES """
+""" ******** """
+if has('nvim')
+      source ~/.vimrc-coc
+endif
+
 " Markdown
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
@@ -125,10 +131,18 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'neomake/neomake'
 " Python
 Plug 'https://github.com/romainl/vim-qf.git'
-Plug 'davidhalter/jedi-vim'
+if has('nvim')
+else
+      Plug 'davidhalter/jedi-vim'
+endif
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dense-analysis/ale'
+" Scala
+if has('nvim')
+      Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " Initialize plugin system
 call plug#end()
