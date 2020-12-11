@@ -58,9 +58,15 @@ let g:EditorConfig_core_mode = 'external_command'
 
 """ INCLUDES """
 """ ******** """
+source ~/.vimrc-keymap
 if has('nvim')
-      source ~/.vimrc-coc
+  source ~/.vimrc-coc
+else
+  source ~/.vimrc-python
 endif
+source ~/.vimrc-md
+source ~/.vimrc-xml
+source ~/.vimrc-lint
 
 " Markdown
 nmap <C-s> <Plug>MarkdownPreview
