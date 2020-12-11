@@ -1,0 +1,53 @@
+""" ************** """
+""" Plugin Install """
+""" ************** """
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '~/my-prototype-plugin'
+Plug 'https://github.com/iamcco/markdown-preview.nvim.git'
+Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax.git'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kien/tabman.vim'
+Plug 'https://github.com/pearofducks/ansible-vim.git'
+Plug 'preservim/nerdcommenter'
+" Java
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'tpope/vim-fugitive'
+Plug 'stephpy/vim-yaml'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+" Plug 'jupyter-vim/jupyter-vim'
+if has('nvim')
+else
+      Plug 'ycm-core/YouCompleteMe'
+endif
+Plug 'neomake/neomake'
+" Python
+Plug 'https://github.com/romainl/vim-qf.git'
+if has('nvim')
+else
+      Plug 'davidhalter/jedi-vim'
+endif
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
+" Scala
+if has('nvim')
+      Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+
+" Initialize plugin system
+call plug#end()
+" call mkdp#util#install()
