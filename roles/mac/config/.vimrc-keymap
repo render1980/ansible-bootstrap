@@ -1,0 +1,31 @@
+""" *********** """
+""" MAPPINGS    """
+""" *********** """
+
+" Markdown
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
+" Quick Find Window
+nnoremap ‘ :cn<CR>
+nnoremap “ :cp<CR>
+nnoremap « :cclose<CR>
+
+nmap T :tabnew<CR>
+nmap ’ :tabnext<CR>
+nmap ” :tabprevious<CR>
+
+nmap <C-p> :CtrlP<CR>
+
+:map! <M-BS> <C-W>
+
+" go
+nmap F :GoFmt<CR>
+nmap ˆ :GoImports<CR>
+nmap gr :GoRename<CR>
+nmap gb :GoBuild<CR>
+
+nnoremap <silent> * :vim <cword> <C-R><C-W> ** <CR>
+
+" nmap <M-/> :norm i#<CR>
