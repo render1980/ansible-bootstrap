@@ -120,29 +120,29 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kien/tabman.vim'
 Plug 'https://github.com/pearofducks/ansible-vim.git'
 Plug 'preservim/nerdcommenter'
-" Java
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'tpope/vim-fugitive'
 Plug 'stephpy/vim-yaml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'jupyter-vim/jupyter-vim'
-Plug 'ycm-core/YouCompleteMe'
 Plug 'neomake/neomake'
 " Python
+Plug 'jupyter-vim/jupyter-vim'
 Plug 'https://github.com/romainl/vim-qf.git'
-if has('nvim')
-else
-      Plug 'davidhalter/jedi-vim'
-endif
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dense-analysis/ale'
+if has('nvim')
+else
+  Plug 'ycm-core/YouCompleteMe'
+  Plug 'davidhalter/jedi-vim'
+endif
 " Scala
 if has('nvim')
-      Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+" Java
+Plug 'artur-shaik/vim-javacomplete2'
 
 " Initialize plugin system
 call plug#end()
