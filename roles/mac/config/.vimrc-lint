@@ -6,6 +6,8 @@ let g:ale_linters = {
       \   'javascript': ['eslint'],
       \}
 let g:ale_fix_on_save = 1
+let b:ale_fixers = ['eslint']
+
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
