@@ -2,6 +2,8 @@ Additionally, we might to do next steps.
 
 ## Editorconfig
 
+Use it for your project.
+
 ```
 root = true
 
@@ -32,6 +34,14 @@ indent_size = 2
 [{package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
+```
+
+## Appearance
+
+* To open definition in new tab use coc-settings.json.
+
+```
+touch ~/.config/nvim/coc-settings.json
 ```
 
 ## Scala
