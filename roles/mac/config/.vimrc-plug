@@ -21,6 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kien/tabman.vim'
 Plug 'https://github.com/pearofducks/ansible-vim.git'
 Plug 'preservim/nerdcommenter'
+Plug 'christoomey/vim-system-copy'
 " Java
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'tpope/vim-fugitive'
