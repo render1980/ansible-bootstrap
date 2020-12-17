@@ -47,6 +47,8 @@ if has('nvim')
       Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+" Javascript
+Plug 'pangloss/vim-javascript'
 
 " Initialize plugin system
 call plug#end()
