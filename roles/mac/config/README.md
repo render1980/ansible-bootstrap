@@ -56,6 +56,12 @@ touch ~/.config/nvim/coc-settings.json
 :CocInstall coc-json coc-tsserver coc-eslint coc-json coc-prettier coc-css
 ```
 
+## Python
+
+```
+:CocInstall coc-python
+```
+
 #### Eslint
 ```
 npm install eslint --save-dev
