@@ -49,6 +49,7 @@ indent_size = 2
 #### Eslint
 ```
 npm install eslint --save-dev
+npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 npm init
 ./node_modules/.bin/eslint --init
 ```
