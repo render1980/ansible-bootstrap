@@ -5,6 +5,7 @@ let g:ale_linters = {
       \   'python': ['flake8', 'pylint'],
       \   'javascript': ['eslint'],
       \}
+let g:ale_fix_on_save = 1
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
