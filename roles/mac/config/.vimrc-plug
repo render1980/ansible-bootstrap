@@ -37,6 +37,7 @@ Plug 'neomake/neomake'
 " Python
 Plug 'https://github.com/romainl/vim-qf.git'
 if has('nvim')
+      Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 else
       Plug 'davidhalter/jedi-vim'
 endif
