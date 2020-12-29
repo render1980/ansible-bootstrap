@@ -95,6 +95,8 @@ emacs_langs:
   - c
 
 pip_packages:
+  - jedi
+  - jedi-language-server
   - pyside2
   - jupyter
   - qtconsole
