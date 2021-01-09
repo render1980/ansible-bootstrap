@@ -12,5 +12,6 @@
   "jedi.diagnostics.didOpen": true,
   "jedi.diagnostics.didChange": true,
   "jedi.diagnostics.didSave": true,
-  "jedi.workspace.extraPaths": []
+  "jedi.workspace.extraPaths": [],
+  "python.pythonPath": "~/.pyenv/shims/python"
 }
