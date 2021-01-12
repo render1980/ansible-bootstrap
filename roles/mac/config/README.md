@@ -1,4 +1,4 @@
-Additionally, we might to do next steps.
+Additionally, we can do next steps.
 
 ## Editorconfig
 
@@ -44,22 +44,10 @@ indent_size = 2
 touch ~/.config/nvim/coc-settings.json
 ```
 
-## Scala
+## Coc extensions
 
 ```
-:ConInstall coc-metals
-```
-
-## Javascript
-
-```
-:CocInstall coc-json coc-tsserver coc-eslint coc-json coc-prettier coc-css
-```
-
-## Python
-
-```
-:CocInstall coc-python
+:CocInstall coc-metals coc-json coc-tsserver coc-eslint coc-json coc-prettier coc-css coc-jedi coc-xml coc-yaml coc-sql coc-stylelint coc-sh coc-markdownlint coc-java coc-html coc-highlight coc-go coc-git coc-fzf-preview coc-cmake
 ```
 
 #### Eslint
