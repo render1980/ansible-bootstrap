@@ -2,11 +2,11 @@
 """ LINTERS """
 """ ******* """
 let g:ale_linters = {
-      \   'python': ['flake8', 'pylint'],
+      \   'python': ['flake8', 'pylint', 'autopep8'],
       \   'javascript': ['eslint'],
       \}
 let g:ale_fix_on_save = 1
-let b:ale_fixers = ['eslint']
+let b:ale_fixers = ['eslint', 'autopep8'']
 
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
