@@ -13,5 +13,7 @@
   "jedi.diagnostics.didChange": true,
   "jedi.diagnostics.didSave": true,
   "jedi.workspace.extraPaths": [],
-  "python.pythonPath": "~/.pyenv/shims/python"
+  "python.pythonPath": "~/.pyenv/shims/python",
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "python"]
 }
