@@ -29,4 +29,4 @@ nmap gb :GoBuild<CR>
 nnoremap <silent> * :vim <cword> <C-R><C-W> ** <CR>
 
 " ALE
-nmap <silent> cf :ALEFix prettier <CR>
+nmap <silent> cfp :ALEFix prettier <CR>
