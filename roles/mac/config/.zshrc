@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home
-export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:$JAVA_HOME/bin"
+export PATH="/usr/local/bin:/usr/local/php5/bin:$M2_HOME/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local/heroku/bin:$MYSQL_HOME/bin:/opt/local/  bin:/opt/local/sbin:$PATH:$GOPATH/bin:$SCALA_HOME/bin:/usr/local/opt/ruby/bin:$HOME/.vim/plugged/vim-iced/bin"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
