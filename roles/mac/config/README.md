@@ -47,7 +47,7 @@ touch ~/.config/nvim/coc-settings.json
 ## Coc extensions
 
 ```
-:CocInstall coc-metals coc-json coc-tsserver coc-eslint coc-json coc-prettier coc-css coc-jedi coc-xml coc-yaml coc-sql coc-stylelint coc-sh coc-markdownlint coc-java coc-html coc-highlight coc-go coc-git coc-fzf-preview coc-cmake
+:CocInstall coc-metals coc-json coc-tsserver coc-eslint coc-json coc-prettier coc-css coc-jedi coc-xml coc-yaml coc-sql coc-stylelint coc-sh coc-markdownlint coc-java coc-html coc-highlight coc-go coc-git coc-fzf-preview coc-cmake coc-conjure
 ```
 
 #### Eslint
