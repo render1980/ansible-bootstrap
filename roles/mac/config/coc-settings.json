@@ -15,5 +15,6 @@
   "jedi.workspace.extraPaths": [],
   "python.pythonPath": "~/.pyenv/shims/python",
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "python"]
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "python"],
+  "coc.source.iced.enable": true
 }
